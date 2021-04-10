@@ -106,12 +106,25 @@ We can have following two changes that can generate another policy:-
             max_reward = R[0][cum_i+j]
             optimal_policy[s] = a
 ```
+* This change won't be affecting `A` matrix (which we name `LP_A` in our code), as it has been formed before performing LP.
+* Also, `alpha` and `R` vector will remain unaffected for the same reason.
 
-2. Another way to change the generated `policy` is by changing the order of actions stored in `state_actions` for each state. For example changing `[ 'UP','LEFT','DOWN','RIGHT','STAY' ]` to `[ 'UP','LEFT','STAY','RIGHT','DOWN' ]` will change the last possible highe reward giving action. Say if in current setup all actions have same reward for a state then policy will `STAY` in first case, but after changing the order the policy will be `DOWN`.
+2. Another way to change the generated `policy` is by changing the order of actions stored in `state_actions` for each state. For example changing `[ 'UP','LEFT','DOWN','RIGHT','STAY' ]` to `[ 'UP','LEFT','STAY','RIGHT','DOWN' ]` will change the last possible highest reward giving action. Say if in current setup all actions have same reward for a state then policy will `STAY` in first case, but after changing the order the policy will be `DOWN`.
 
-3. Other way to chane the `policy` is by changing starting variables like changing the start from `('C',2,3,'R',100)` to `('N',0,3,'R',75)` or any other state or we can change the `STEPCOST` value.
 
-* item 3
+* It will surely affect the `A` matrix (which we name `LP_A` in our code), as it has been formed before performing LP, but depends on the order the action has been stored for each states.
+* Same is the case for `R` vector as it is with `A` matrix (which we name `LP_A` in our code) for the same reason.
+* As, `alpha` vector holds the initial status i.e. probability of the states, which won't get updated during algorithm. Hence, no affect on `alpha` vector.
+
+
+3. Other way to chane the `policy` is by changing starting variables like changing the start from `('C',2,3,'R',100)` to `('N',0,3,'R',75)` or any other state.
+
+* It will only affect the `alpha` vector as initial probability distribution gets modified. `A` & `R` will remain unaffected.
+
+4. We can change the `STEPCOST` value.
+
+* Only `R` will get affected as it represents the expected reward for each action valid for each and every state, which will get changed due to change in `STEPCOST`. `alpha` & `A` will remain unaffected.
+
 <br>
 
 
