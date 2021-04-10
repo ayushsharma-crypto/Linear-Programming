@@ -433,7 +433,7 @@ for i in range(len(all_state)):
     max_reward = -1000000
     for j in range(len(state_actions[s])):
         a = state_actions[s][j]
-        if max_reward < R[0][cum_i+j]:
+        if max_reward <= R[0][cum_i+j]:
             max_reward = R[0][cum_i+j]
             optimal_policy[s] = a
     cum_i += len(state_actions[s])      
