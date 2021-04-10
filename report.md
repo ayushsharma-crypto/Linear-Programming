@@ -36,7 +36,7 @@ Demonstration of linear-programming for solving MDPs.
 * Next, we made a 2-D matrix (named it `A`, it is not our final required `A` matrix) with dimension `len(all_state)*len(all_state)`, where each cell have data as a list with entry 0's of length `len(state_actions[all_state[r]])`, where `r` is a row variable ranging from `(0 to len(all_state))`.
 
 * Say, if an action(action index = ai) can take you from state A(rownum = j) to B(rownum = i) with probability P. Then we will do the follwing:
- ```python
+```python
     A[j][j][ai] += P
     B[i][j][ai] -= P
 ```
