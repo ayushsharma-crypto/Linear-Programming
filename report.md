@@ -87,13 +87,31 @@ Demonstration of linear-programming for solving MDPs.
 
 ## Multiple Policies
 
-### Can there be multiple policies?
+### Can there be multiple policies? Why?
 
-### Why?
+Yes, there can be multiple policies. Since, the `(state, actions)` with the same corressponding value in `X` are interchangeable. Hence, there can be multiple policies.
 
 ### What changes can you make in your code to generate another policy?
+We can have following two changes that can generate another policy:-
 
+1. In our code we have modification in the condition for finding action having max value of 'X'.The former finds the last highest value of x in case many x's have the same largest value. The second one finds the first x with the highest value. Code for both are as follows:-
+```python3
+        if max_reward <= R[0][cum_i+j]:
+            max_reward = R[0][cum_i+j]
+            optimal_policy[s] = a
+```
 
+```python3
+        if max_reward < R[0][cum_i+j]:
+            max_reward = R[0][cum_i+j]
+            optimal_policy[s] = a
+```
+
+2. Another way to change the generated `policy` is by changing the order of actions stored in `state_actions` for each state. For example changing `[ 'UP','LEFT','DOWN','RIGHT','STAY' ]` to `[ 'UP','LEFT','STAY','RIGHT','DOWN' ]` will change the last possible highe reward giving action. Say if in current setup all actions have same reward for a state then policy will `STAY` in first case, but after changing the order the policy will be `DOWN`.
+
+3. Other way to chane the `policy` is by changing starting variables like changing the start from `('C',2,3,'R',100)` to `('N',0,3,'R',75)` or any other state or we can change the `STEPCOST` value.
+
+* item 3
 <br>
 
 
